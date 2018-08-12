@@ -51,4 +51,16 @@
 	        <value>UTF-8</value> 
 	    </property>
 	</bean>
+	
+			<!-- interceptor setting -->
+	<mvc:interceptors>
+	   <mvc:interceptor>
+	       <mvc:mapping path="/hello/viewResult"/>
+	       <bean class="mySpringMVC_Interceptor.TestInterceptor"></bean>
+	   </mvc:interceptor>
+	   <!-- <bean class="mySpringMVC_Interceptor.TestInterceptor"></bean>
+	    -->
+	</mvc:interceptors>
+	
+
 </beans>	

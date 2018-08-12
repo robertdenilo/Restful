@@ -8,7 +8,7 @@
 </head>
 <body>
 <P> Great Ok!!!!!!!! ${Name} : ${Age}  adsfs </P>
-
+     <p>${pageContext.request.contextPath}  </p>
 
 </body>
 </html>

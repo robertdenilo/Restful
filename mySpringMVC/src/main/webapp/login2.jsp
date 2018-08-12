@@ -18,6 +18,7 @@ String basePath = request.getScheme() + "://" +request.getServerName() +"://"+re
         input:<input type="submit"/>
      </form>
      
+
      
      <form id="form2" name="myform2" method="post" action="hello/sayHi">
          user: <input type="text" name="name"/>

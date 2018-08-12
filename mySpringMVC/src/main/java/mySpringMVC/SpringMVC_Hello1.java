@@ -3,6 +3,7 @@ package mySpringMVC;
 
 
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -77,6 +78,10 @@ public class SpringMVC_Hello1 {
 			System.out.println(modelKey + ":" +modelValue);
 		}
 		//request.setAttribute("Name", Name);
+		
+		
+		request.getSession().setAttribute("login_status", "true");
+		
 		return "home";
 	}
 	
@@ -100,6 +105,10 @@ public class SpringMVC_Hello1 {
 	@RequestMapping("/login")
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView("input");  
+		Map mm = mav.getModel();
+		for(Object item: mm.keySet()){
+				
+		}
 		return mav;
 	}	
 	@RequestMapping("/input")
@@ -137,7 +146,7 @@ public class SpringMVC_Hello1 {
         mv.addObject("formFileName", formFile.getOriginalFilename());  
         
 
-        //Èç¹û²»ÓÃ×¢½â×Ô¶¯°ó¶¨£¬ÎÒÃÇ»¹¿ÉÒÔÏñÏÂÃæÒ»ÑùÊÖ¶¯»ñÈ¡Êý¾Ý
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ó¶¨£ï¿½ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
         //String[] urlParam1 = (String[]) request.getParameterValues("urlParam");
         //mv.addObject("urlParam1", urlParam1[0]);  
        String urlParam1 = ServletRequestUtils.getStringParameter(request, "urlParam", null);
