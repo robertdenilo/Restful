@@ -26,6 +26,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.Autowired;
+import mySpringMVC.SERVICE.UserManageImpl;
+import mySpringMVC.ENTITY.User;
 
 
 @Controller
@@ -146,7 +149,7 @@ public class SpringMVC_Hello1 {
         mv.addObject("formFileName", formFile.getOriginalFilename());  
         
 
-        //�������ע���Զ��󶨣����ǻ�����������һ���ֶ���ȡ����
+        //锟斤拷锟斤拷锟斤拷锟阶拷锟斤拷远锟斤拷蠖ǎ锟斤拷锟斤拷腔锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟揭伙拷锟斤拷侄锟斤拷锟饺★拷锟斤拷锟�
         //String[] urlParam1 = (String[]) request.getParameterValues("urlParam");
         //mv.addObject("urlParam1", urlParam1[0]);  
        String urlParam1 = ServletRequestUtils.getStringParameter(request, "urlParam", null);
@@ -160,4 +163,14 @@ public class SpringMVC_Hello1 {
 		mv.setViewName("uploadfile");
 		return mv;
 	}
+	
+    @Autowired  
+    private UserManageImpl userService;  
+    //添加用户  
+    @RequestMapping(value="/addUser",method=RequestMethod.POST)  
+    public String addUser(User user,HttpServletRequest request) throws Exception{  
+        System.out.println("用户名：======"+user.getName());  
+        userService.addUser(user);  
+        return "success";  
+    } 
 }

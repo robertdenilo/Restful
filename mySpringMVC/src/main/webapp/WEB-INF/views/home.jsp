@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<P> Great Ok!!!!!!!! ${Name} : ${Age}  adsfs </P>
+<P> Great Ok!!!!!!!! ${Name} : ${Age} :${Pwd} </P>
      <p>${pageContext.request.contextPath}  </p>
 
 </body>
