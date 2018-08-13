@@ -63,9 +63,6 @@
 	</mvc:interceptors>
 	
 	
-	
-	
-	
     <!-- 必须在此mvc servlet容器内加载transaction manager，否则报Could not obtain transaction-synchronized Session for current thread错 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<tx:annotation-driven proxy-target-class = "true" /> 

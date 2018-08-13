@@ -2,6 +2,8 @@ package mySpringMVC;
 
 
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -164,6 +167,8 @@ public class SpringMVC_Hello1 {
 		return mv;
 	}
 	
+	
+    //below same url: http://localhost:8080/mySpringMVC/UserAdd.jsp
     @Autowired  
     private UserManageImpl userService;  
     //添加用户  
@@ -173,4 +178,35 @@ public class SpringMVC_Hello1 {
         userService.addUser(user);  
         return "success";  
     } 
+    
+
+    //ajax calling: http://localhost:8080/mySpringMVC/hello/getUsers
+    @RequestMapping(value="/getUsers",method=RequestMethod.GET)  
+    public ResponseEntity<String>  getUser(User user,HttpServletRequest request) throws Exception{
+    	Object[] aa = userService.getUsers();
+    	List<Object> a1 = Arrays.asList(aa);
+    	ResponseEntity<String> bb = new ResponseEntity<String>(a1.toString(),HttpStatus.OK);  
+    	log.debug(bb.toString());  //<200 OK,[5, zhouyutong, 0714],{}>
+   	    return bb;
+    }
+    //below ajax calling with data input: http://localhost:8080/mySpringMVC/hello/getUsersWithJsonParam
+    @RequestMapping(value="/getUsersWithJsonParam",method=RequestMethod.POST)  
+    public ResponseEntity<String> getUsersWithJsonParam(@RequestBody User user) throws Exception {
+    	List<User> aa = userService.getUsersWithJsonParam(user.getName());
+    	if (aa.size()>0) {
+        	ResponseEntity<String> bb = new ResponseEntity<String>(aa.get(0).toString(),HttpStatus.OK);
+        	log.debug(aa.get(0).toString()); 
+        	return bb;
+    	}
+        return null;
+    }
+    
+    //ajax calling with param list: http://localhost:8080/mySpringMVC/hello/getUsersWithList
+    @RequestMapping(value="/getUsersWithList",method=RequestMethod.POST)
+    public ResponseEntity<String> getUsersWithList(@RequestBody List<String> name_list) throws Exception {
+    	List<User> aa = userService.getUsersWithJsonParam(name_list.get(0));
+    	ResponseEntity<String> bb = new ResponseEntity<String>(aa.get(0).toString(),HttpStatus.OK);
+    	return bb;
+    }
+    
 }
