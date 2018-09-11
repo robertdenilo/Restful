@@ -1,6 +1,7 @@
 package mySpringMVC;
 
 
+//http://localhost:8080/mySpringMVC/login2.jsp
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,8 +32,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.beans.factory.annotation.Autowired;
 import mySpringMVC.SERVICE.UserManageImpl;
+import mySpringMVC.AWARE.SpringContextHelper;
 import mySpringMVC.ENTITY.User;
-
+import mySpringMVC.AWARE.Demo2;
 
 @Controller
 @RequestMapping("/hello")
@@ -40,12 +42,16 @@ public class SpringMVC_Hello1 {
      
 	private static Logger log = LoggerFactory.getLogger(SpringMVC_Hello1.class);
 	
+	// test
 	//   /hello/mvc?name=zhouming   http://localhost:8080/mySpringMVC/hello/mvc?name=zhouming4
 	@RequestMapping(value = "/mvc", method = RequestMethod.GET)
 	public String sayHello(@RequestParam("name") String Name , Model model) {
 		model.addAttribute(Name);
         log.debug("aaaaaaabbbbbbbb ni hao:{}" , Name);
     	return "home";
+        
+    	//@ResponseBody
+        //return new StringBuilder().append("tim horton");
     }
 	
 	
@@ -95,6 +101,7 @@ public class SpringMVC_Hello1 {
 	//http://localhost:8080/mySpringMVC/hello/mingge
 	@RequestMapping(value="/{Name}", method=RequestMethod.GET)
 	public @ResponseBody String sayHello4(@PathVariable String Name) {
+		System.out.println("got msg*********");
 		return "Good Guy!!!";   //instead of Json
 	}
 	
@@ -206,6 +213,18 @@ public class SpringMVC_Hello1 {
     public ResponseEntity<String> getUsersWithList(@RequestBody List<String> name_list) throws Exception {
     	List<User> aa = userService.getUsersWithJsonParam(name_list.get(0));
     	ResponseEntity<String> bb = new ResponseEntity<String>(aa.get(0).toString(),HttpStatus.OK);
+    	return bb;
+    }
+    
+    
+    
+    //test Aware function to introduce new Bean
+    @RequestMapping(value="/getAware",method=RequestMethod.GET)
+    public ResponseEntity<String> getAwareDemo() {
+    	
+    	Demo2 d2 = (Demo2)SpringContextHelper.getBean("testDemo");
+    	System.out.println(d2.getId()+":"+d2.getName());
+    	ResponseEntity<String> bb = new ResponseEntity<String>(d2.toString(),HttpStatus.OK);
     	return bb;
     }
     

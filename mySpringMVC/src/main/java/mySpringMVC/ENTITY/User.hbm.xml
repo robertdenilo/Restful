@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping> <!-- //根元素 -->
+<class name="mySpringMVC.ENTITY.User" table="t_user"> <!-- //指定实体类和对应的数据表 -->
+    <id name="id" column="id">                 <!-- //<id>元素设定类中的id和表的主键id的映射 -->
+        <generator class="native"></generator> <!-- //<gender>元素指定对象标识符生成器，负责生成唯一id。以后会详细讲 -->
+    </id>
+    <property name="name" column="name"></property> <!-- //name是实体类属性的名字，column是数据表中列的名字 -->
+    <property name="pwd" column="pwd"></property>
+</class>
+</hibernate-mapping> 

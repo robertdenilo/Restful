@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>RestW</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet> 
+      <servlet-name>Jersey RESTful Application</servlet-name> 
+      <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+      <init-param> 
+<!--       两种加载资源的方式，一种是使用自己的资源加载器去加载资源，需要给出自己资源加载器的位置。另一种是使用默认的资源加载器加载，
+      需要给出资源所在的package。个人主张第一种，写一个自己的资源加载器去加载想要加载的资源，这样感觉可控性强一点 -->
+      <!-- 配置默认的资源包路径，使用默认的配置类去加载资源 -->
+<!-- 方式一使用provider pckg得到xml格式结果         <param-name>jersey.config.server.provider.packages</param-name> 
+         <param-value>com.restful</param-value>  -->
+         <!-- 方式二使用application得到json格式结果 --><!-- 配置自己的资源加载类去加载资源 -->
+         <param-name>javax.ws.rs.Application</param-name>  
+         <param-value>com.restful.RestApplication</param-value>  
+      </init-param> 
+   </servlet> 
+   <servlet-mapping> 
+      <servlet-name>Jersey RESTful Application</servlet-name> 
+      <url-pattern>/rest/*</url-pattern> 
+   </servlet-mapping>  
+</web-app>

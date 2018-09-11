@@ -24,4 +24,7 @@
  	    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/> 
 	</context:component-scan>
     <import resource="applicationContext-hibernate.xml"/>
+    
+    <!--     以下bean用于引入可以直接从容器getBean的方法 -->
+    <bean id="springContextHelper" class="mySpringMVC.AWARE.SpringContextHelper"></bean>
 </beans>

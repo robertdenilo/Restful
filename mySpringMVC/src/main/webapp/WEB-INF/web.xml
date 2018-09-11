@@ -11,6 +11,7 @@
       <param-value>/WEB-INF/configs/spring/applicationContext.xml</param-value>
   </context-param>
   
+  <!-- 初始化Spring容器，让Spring容器随Web应用的启动而自动启动 -->
   <listener>
       <listener-class>
           org.springframework.web.context.ContextLoaderListener
