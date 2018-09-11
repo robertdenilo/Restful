@@ -42,7 +42,6 @@ public class SpringMVC_Hello1 {
      
 	private static Logger log = LoggerFactory.getLogger(SpringMVC_Hello1.class);
 	
-	// test
 	//   /hello/mvc?name=zhouming   http://localhost:8080/mySpringMVC/hello/mvc?name=zhouming4
 	@RequestMapping(value = "/mvc", method = RequestMethod.GET)
 	public String sayHello(@RequestParam("name") String Name , Model model) {
